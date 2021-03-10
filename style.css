@@ -1,18 +1,27 @@
+@import url("https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500&display=swap");
+
+*,*::before,*::after {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  outline: none;
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
 body {
-  font-family: Helvetica, Arial, sans-serif;
-  /* border-top: 5px solid #4c4066; */
-  margin: 0px auto;
-  font-size: 14px;
+  font: 400 16px/120% "Rubik", sans-serif;
   color: #1a1919;
   font-size: 16px;
-  width: 100%;
-  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #fdfdfd;
 }
 
 header {
   text-align: center;
-  background-color: #fdfdfd;
-  /* border-bottom: 1px solid #e5e2e0; */
 }
 
 #logo {
@@ -20,33 +29,65 @@ header {
   padding: 1em;
 }
 
-#container {
-  margin: 0px auto;
-  height: auto;
+h3, p {
   text-align: center;
-  /* background-color: antiquewhite; */
+  color: #141301;
+  opacity: 0.9;
+}
+
+h3 {
+  text-transform: uppercase;
+  font: bold 34px/120% Georgia, serif;
+}
+
+#container {
+  margin-top: 1em;
+  padding: 0 2em 0;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
 }
 
 input[type="text"] {
   height: 2.2em;
+  width: 300px;
+  max-width: 100%;
   font-size: 1em;
-  width: 50%;
   padding: 10px;
-  border: 2px solid #4c4066;
+  border: 2px solid #ff60a1;
   border-radius: 15px;
   outline: none;
 }
 
-.information,
-.avatar {
-  vertical-align: top;
-  display: inline-block;
+input:focus {
+  border: 2px solid #5ebefd;
 }
 
-.information {
-  text-align: center;
-  border-top-left-radius: 5px;
-  border-bottom-left-radius: 5px;
+input::placeholder {
+  color: #353131;
+  font-size: 15px;
+}
+
+#profile {
+  padding: 5px 10px;
+  min-height: 50%;
+  min-width: 50%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: flex-start;
+  background-color: #353131;
+  color: #fdfdfd;
+  border-radius: 5px;
+}
+
+#profile p {
+  color: #fdfdfd;
+}
+
+.avatar {
+  padding-bottom: 5px;
 }
 
 .search {
@@ -54,21 +95,28 @@ input[type="text"] {
   margin: 50px auto;
 }
 
-h2 {
-  padding: 5px;
+h4 {
+  font-weight: 500;
+  padding-bottom: 5px;
 }
 
-.profile {
-  height: 130px;
-  width: 150px;
-  padding: 90px 30px 0;
-  display: block;
-  background-color: purple;
-  text-decoration: none;
-  color: white;
-  font-weight: bold;
-}
+@media only screen and (max-width: 426px) {
+  h3 {
+    font-size: 24px;
+  }
 
-.profile:hover {
-  background-color: #b300b3;
+  p,input[type="text"],input::placeholder {
+    font-size: 14px;
+  }
+
+  p {
+    padding: 0.3em 1em;
+  }
+
+  input[type="text"] {
+    height: 2.2em;
+    width: 100%;
+    padding: 10px;
+    max-width: 100%;
+  }
 }
