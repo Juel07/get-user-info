@@ -6,6 +6,9 @@ $(document).ready(function () {
             var username = input.val();
 
             getGithubInfo(username)
+
+            // clear input field
+            input.val("")
         }
     });
 });
@@ -15,26 +18,35 @@ function getGithubInfo(username) {
 
     var xmlhttp = new XMLHttpRequest();
     xmlhttp.open('GET', url, false);
-    xmlhttp.send();
+    xmlhttp.send(); // send response to browser
 
-    var data = xmlhttp.responseText;
-
-    // console.log(data);
     showUser(xmlhttp)
 }
 
 function showUser(xmlhttp) {
-    if (xmlhttp.status === 200) {
+    if (xmlhttp.status === 200) { // check if the status code is 200(Okay)
+        
         // show the user details
         var json = xmlhttp.responseText;
         var user = JSON.parse(json);
-        $('#profile .avatar').html('<img src="'+user.avatar_url+'" width="80" height="80">')
-        $('#profile .login').html("Login: " + user.login)
-        $('#profile .id').html( "ID: " + user.id)
-        $('#profile .url').html("URL: " + user.html_url)
-        $('#profile .location').html("Location: " + user.location)
+        $('#profile .info').html(`<div>
+        <img src=${user.avatar_url} width="80" height="80"/>
+        <div>Login: ${user.login}</div>
+        <div>ID: ${user.id}</div>
+        <div>URL: ${user.html_url}</div>
+        <div>Location: ${user.location}</div>
+        </div>`)
+
+        // do not display error message
+        $('#profile .error').html("")
+
     } else {
+
         // show an error
-        $('#profile p').html("No such user!")
+        $('#profile .error').html("No such user!")
+
+        // do not display the info
+        $('#profile .info').html("")
     }
 }
+
