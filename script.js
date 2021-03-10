@@ -1,12 +1,10 @@
-// github user finder example
+// github user finder
 $(document).ready(function () {
     $(document).on('keypress', '#username', function (event) {
         if (event.which === 13) { // check the key was <enter>
-            // do something
             var input = $(this);
             var username = input.val();
 
-            console.log('username was: ' + username);
             getGithubInfo(username)
         }
     });
@@ -21,7 +19,7 @@ function getGithubInfo(username) {
 
     var data = xmlhttp.responseText;
 
-    console.log(data);
+    // console.log(data);
     showUser(xmlhttp)
 }
 
@@ -30,10 +28,13 @@ function showUser(xmlhttp) {
         // show the user details
         var json = xmlhttp.responseText;
         var user = JSON.parse(json);
-        // console.log(user.following)
-        $('#profile h2').append(user.name + ' is Github user #' + user.id)
+        $('#profile .avatar').html('<img src="'+user.avatar_url+'" width="80" height="80">')
+        $('#profile .login').html("Login: " + user.login)
+        $('#profile .id').html( "ID: " + user.id)
+        $('#profile .url').html("URL: " + user.html_url)
+        $('#profile .location').html("Location: " + user.location)
     } else {
         // show an error
-        $('#profile h2').append("No such user!")
+        $('#profile p').html("No such user!")
     }
 }
